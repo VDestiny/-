@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>逍遥骰</title>
+    <style>
+        body {
+            height: 100vh;
+            background: radial-gradient(#dbdff8 25%,#625fc1);
+        }
+
+        .backgroud {
+            display: grid;
+            height: 100vh;
+            grid-template-columns: 33% 34% 33%;
+            grid-template-rows: 20% 20% 20% 20% 20%;
+        }
+
+        .name {
+            position: relative;
+            top: 2vh;
+            height: 12vh;
+            background-size: 100% 100%;
+            background-image: url("https://img2022.cnblogs.com/blog/2992253/202210/2992253-20221001122257756-1105076853.png");
+            grid-area: 1 / 2 / 1 / 2;
+        }
+
+        .button {
+            display: grid;
+            position: relative;
+            top: 3vh;
+            height: 10vh;
+            background: #c472c5;
+            border: 10px solid #ffe9cc;
+            border-radius: 10px;
+            font-weight: bolder;
+            font-size: 40px;
+            text-align: center;
+            box-shadow: 2px 2px 5px #000;
+        }
+
+        .button:active {
+            background: #9a67b6;
+            border: 9px solid #ffe9cc;
+            box-shadow: 4px 4px 10px #000;
+            color: #272185;
+        }
+
+        .button:hover {
+            background: #9a67b6;
+            color: #272185;
+        }
+
+        #pp {
+            grid-area: 2 / 2 / 2 / 2;
+        }
+
+        #pa {
+            grid-area: 3 / 2 / 3 / 2;
+        }
+
+        #po {
+            grid-area: 4 / 2 / 4 / 2;
+        }
+    </style>
+
+    <script>
+        function button_pp() {
+            window.open("人人对战（托管）.html");
+            window.close();
+        }
+
+        function button_pa() {
+            window.open("人机对战（托管）.html");
+            window.close();
+        }
+
+        function button_po() {
+            window.open("游戏说明.html");
+            window.close();
+        }
+    </script>
+</head>
+<body>
+    <div class="backgroud">
+        <div class="name"></div>
+        <button class="button" id="pp" onclick="button_pp()">人人对战</button>
+        <button class="button" id="pa" onclick="button_pa()">人机对战</button>
+        <button class="button" id="po" onclick="button_po()">游戏说明</button>
+        </button>
+    </div>
+</body>
+</html>
+
