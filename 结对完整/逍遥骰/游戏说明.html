@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>逍遥骰</title>
+    <style>
+        body {
+            height: 100vh;
+            background: radial-gradient(#dbdff8 25%,#625fc1);
+        }
+
+        .backgroud {
+            display: grid;
+            height: 100vh;
+            grid-template-columns: 10% 80% 10%;
+            grid-template-rows: 10% 80% 10%;
+        }
+
+        .name {
+            position: relative;
+            top: 2vh;
+            left: 24vw;
+            width: 33vw;
+            background-size: 100% 100%;
+            background-image: url("https://img2022.cnblogs.com/blog/2992253/202210/2992253-20221001122257756-1105076853.png");
+            grid-area: 1 / 2 / 1 / 2;
+        }
+
+        #back_ins {
+            background: #7975fd;
+            position: relative;
+            top: 5vh;
+            grid-area: 2 / 2 / 2 / 2;
+            grid-template-rows: 80% 20%;
+            border: 1vw solid #f3e4a1;
+            border-radius: 3vw;
+        }
+
+        .txt1 {
+            position: relative;
+            left: 35vw;
+            font-size: 4vh;
+        }
+
+        .txt2 {
+            position: relative;
+            left: 1vw;
+            font-size: 3.5vh;
+        }
+
+        .txt3 {
+            position: relative;
+            left: 4vw;
+            font-size: 3vh;
+        }
+
+        .button {
+            display: grid;
+            position: relative;
+            top: -1vh;
+            left: 65vw;
+            grid-area: 2 / 1 / 2 / 1;
+            height: 5vh;
+            background: radial-gradient(#909dee,#6582f6);
+            border: 4px solid #ffe9cc;
+            border-radius: 10px;
+            font-weight: bolder;
+            font-size: 3vh;
+            text-align: center;
+            box-shadow: 2px 2px 5px #000;
+        }
+
+        .button:active {
+            background: radial-gradient(#7c88d2,#425bc3);
+            border: 5px solid #ffe9cc;
+            box-shadow: 4px 4px 10px #000;
+            color: #dbdff8;
+        }
+
+        .button:hover {
+            background: radial-gradient(#7c88d2,#425bc3);
+            color: #dbdff8;
+        }
+
+    </style>
+
+    <script>
+        function return_begin() {
+            window.open("");
+        }
+    </script>
+</head>
+<body>
+    <div class="backgroud">
+        <div class="name"></div>
+        <div id="back_ins">
+            <p class="txt1" id="title">游戏说明</p>
+            <p>
+                <a class="txt2">投掷骰子：</a>
+                <br>
+                <a class="txt3">玩家可以点击“投！”，开始投掷骰子，之后可以点击“停！”，使骰子停止转动，得到骰子点数。</a>
+            </p>
+            <p>
+                <a class="txt2">安放骰子：</a>
+                <br>
+                <a class="txt3">玩家得到自己的骰子点数之后，可以将骰子点数安放在自己九宫格中点数为0的格子。</a>
+            </p>
+            <p>
+                <a class="txt2">消除规则：</a>
+                <br>
+                <a class="txt3">当玩家安放完自己骰子点数n之后，系统会自动消除对方玩家九宫格与玩家安放骰子同一行中相同的点数。</a>
+            <p>
+                <a class="txt2">得分规则：</a>
+                <br>
+                <a class="txt3">各行得分：∑（各点数*此点数在该行出现的次数^2）</a>
+                <br>
+                <a class="txt3">玩家得分：∑（各行得分）</a>
+            </p>
+            <p>
+                <a class="txt2">游戏结束：</a>
+                <br>
+                <a class="txt3">当一名玩家的九宫格填满之后则游戏结束，计算各玩家的得分，分高者获胜。</a>
+            </p>
+            <button class="button" onclick="return_begin()">开始界面</button>
+        </div>
+    </div>
+</body>
+</html>
+

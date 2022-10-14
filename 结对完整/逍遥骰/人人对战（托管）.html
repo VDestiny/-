@@ -1,0 +1,1220 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>逍遥骰</title>
+    
+    <style>
+
+        body {
+            height: 100vh;
+            background: radial-gradient(#dbdff8 25%,#625fc1);
+        }
+
+        #backgroud {
+            display: grid;
+            height: 100vh;
+            width: 100vw;
+            grid-template-columns: 10% 30% 20% 30% 10%;
+            grid-template-rows: 14% 80% 6%;
+        }
+
+        #name {
+            position: relative;
+            width: 20vw;
+            height: 10vh;
+            background-size: 100% 100%;
+            background-image: url("https://img2022.cnblogs.com/blog/2992253/202210/2992253-20221001122257756-1105076853.png");
+            grid-area: 1 / 3 / 1 / 3;
+        }
+
+        #left {
+            position: relative;
+            background-size: 80% 100%;
+            background-repeat: no-repeat;
+            background-image: url("https://img2022.cnblogs.com/blog/2992253/202210/2992253-20221012154620042-516094848.png");
+            grid-area: 2 / 1 / 2 / 1;
+        }
+        
+        #right {
+            position: relative;
+            left: 2vw;
+            background-size: 80% 100%;
+            background-repeat: no-repeat;
+            background-image: url("https://img2022.cnblogs.com/blog/2992253/202210/2992253-20221012154704025-1438912708.png");
+            grid-area: 2 / 5 / 2 / 5;
+        }
+
+        #back_sound {
+            z-index: 2;
+            height: 4vh;
+            width: 12vw;
+            display: grid;
+            grid-area: 1 / 1 / 1 / 1;
+            position: relative;
+            left: 2vw;
+            top: 5vh;
+            background: #918bd2;
+            border: 5px solid #f3e4a1;
+            font-weight: bolder;
+            border-radius: 15px;
+            font-size: 3vh;
+            text-align: center;
+            box-shadow: 3px 3px 6px #000;
+        }
+
+        #back_sound:active {
+            border: 5px solid #f3e4a1;
+            box-shadow: 6px 6px 12px #000;
+            background: #7e78b6; 
+            color: #272185;
+        }
+
+        #back_sound:hover {
+            background: #7e78b6; 
+            color: #272185;
+        }
+
+        #back_A {
+            display: grid;
+            height: 80vh;
+            width: 30vw;
+            background: #968ccb;
+            grid-area: 2 / 2 / 2 / 2;
+            grid-template-columns: 10% 80% 10%;
+            grid-template-rows: 15% 15% 70%;
+            border:2px solid black;
+            border-radius: 3vw;
+        }
+
+        #A_scr {
+            z-index: 2;
+            display: grid;
+            background-color: #f3e4a1;
+            border-bottom-left-radius: 1.5vw;
+            border-bottom-right-radius: 1.5vw;
+            border-left: 2px solid #000;
+            border-bottom: 2px solid #000;
+            border-right: 2px solid #000;
+            font-size: 6vh;
+            text-align: center;
+            color: #dbdff8;
+            text-shadow: 1px 1px 2px black,
+                        0 0 25px blue,
+                        0 0 5px darkblue;
+            grid-area: 1 / 2 / 1 / 2;
+        }
+
+        #A_num {
+            z-index: 2;
+            height: 10vh;
+            width: 10vw;
+            display: grid;
+            grid-area: 2 / 2 / 2 / 2;
+            position: relative;
+            top: 0.75vh;
+            background-color: #f3e4a1;
+            border: 2px solid black;
+            border-top-right-radius: 1.5vw;
+            border-bottom-right-radius: 1.5vw;
+            color: #5a6edf;
+            text-shadow: 4px 4px 8px #344595;
+            text-align: center;
+            font-size: 4vw;
+        }
+
+        #A_coll {
+            z-index: 2;
+            height: 6vh;
+            width: 7vw;
+            display: grid;
+            grid-area: 2 / 2 / 2 / 2;
+            position: relative;
+            top: 2.3vh;
+            left: 14.5vw;
+            background: #918bd2;
+            border: 5px solid #f3e4a1;
+            font-weight: bolder;
+            border-radius: 15px;
+            font-size: 3.5vh;
+            text-align: center;
+            box-shadow: 3px 3px 6px #000;
+        }
+
+        #A_coll:active {
+            border: 6px solid #f3e4a1;
+            box-shadow: 6px 6px 12px #000;
+            background: #7e78b6; 
+            color: #272185;
+        }
+
+        #A_coll:hover {
+            background: #7e78b6; 
+            color: #272185;
+        }
+
+        #A_grid {
+            z-index: 2;
+            display: grid;
+            height: 22vw;
+            width: 22vw;
+            grid-area: 3 / 2 / 3 / 2;
+            grid-template-columns: auto auto auto;
+            grid-template-rows: auto auto auto;
+            grid-gap:20px 20px;
+            background: #ffe7be;
+            padding: 15px;
+            border:2px solid black;
+            border-radius: 2vw;
+            box-shadow: 5px 5px 10px black;
+        }
+
+        #A_grid > div{
+            border-radius: 2vw;
+            text-align: center;
+            font-size: 5vw;
+        }
+
+        #back_B {
+            display: grid;
+            height: 80vh;
+            width: 30vw;
+            background: #968ccb;
+            grid-area: 2 / 4 / 2 / 4;
+            grid-template-columns: 10% 80% 10%;
+            grid-template-rows: 15% 15% 70%;
+            border:2px solid black;
+            border-radius: 3vw;
+        }
+
+        #B_scr {
+            z-index: 2;
+            display: grid;
+            background-color: #f3e4a1;
+            border-bottom-left-radius: 1.5vw;
+            border-bottom-right-radius: 1.5vw;
+            border-left: 2px solid #000;
+            border-bottom: 2px solid #000;
+            border-right: 2px solid #000;
+            font-size: 6vh;
+            text-align: center;
+            color: #dbdff8;
+            text-shadow: 1px 1px 2px black,
+                        0 0 25px blue,
+                        0 0 5px darkblue;
+            grid-area: 1 / 2 / 1 / 2;
+        }
+
+        #B_num {
+            z-index: 2;
+            height: 10vh;
+            width: 10vw;
+            display: grid;
+            grid-area: 2 / 2 / 2 / 2;
+            position: relative;
+            top: 0.75vh;
+            background-color: #f3e4a1;
+            border: 2px solid black;
+            border-top-right-radius: 1.5vw;
+            border-bottom-right-radius: 1.5vw;
+            color: #5a6edf;
+            text-shadow: 4px 4px 8px #344595;
+            text-align: center;
+            font-size: 4vw;
+        }
+
+        #B_coll {
+            z-index: 2;
+            height: 6vh;
+            width: 7vw;
+            display: grid;
+            grid-area: 2 / 2 / 2 / 2;
+            position: relative;
+            top: 2.3vh;
+            left: 14.5vw;
+            background: #918bd2;
+            border: 5px solid #f3e4a1;
+            font-weight: bolder;
+            border-radius: 15px;
+            font-size: 3.5vh;
+            text-align: center;
+            box-shadow: 3px 3px 6px #000;
+        }
+
+        #B_coll:active {
+            border: 6px solid #f3e4a1;
+            box-shadow: 6px 6px 12px #000;
+            background: #7e78b6; 
+            color: #272185;
+        }
+
+        #B_coll:hover {
+            background: #7e78b6; 
+            color: #272185;
+        }
+
+        #B_grid {
+            z-index: 2;
+            display: grid;
+            height: 22vw;
+            width: 22vw;
+            grid-area: 3 / 2 / 3 / 2;
+            grid-template-columns: auto auto auto;
+            grid-template-rows: auto auto auto;
+            grid-gap:20px 20px;
+            background: #ffe7be;
+            padding: 15px;
+            border:2px solid black;
+            border-radius: 2vw;
+            box-shadow: 5px 5px 10px black;
+        }
+
+        #B_grid > div{
+            border-radius: 2vw;
+            text-align: center;
+            font-size: 5vw;
+        }
+
+        .top_grid {
+            box-shadow: 3px 3px 7px #000;
+            background: #ecc6dd;
+        }
+
+        .top_grid:active {
+            background: #dde2f8; 
+            box-shadow: 8px 8px 16px #000;
+            opacity: 1;    
+            color: #272185;
+        }
+
+        .top_grid:hover {
+            background: #dde2f8; 
+            color: #272185;
+        }
+        
+        .mid_grid {
+            box-shadow: 3px 3px 7px #000;
+            background: #c3ace8;
+        }
+
+        .mid_grid:active {
+            background: #dde2f8; 
+            box-shadow: 8px 8px 16px #000;
+            opacity: 1;  
+            color: #272185;
+        }
+
+        .mid_grid:hover {
+            background: #dde2f8; 
+            color: #272185;
+        }
+
+        .bot_grid {
+            box-shadow: 3px 3px 7px #000;
+            background: #918bd2;
+        }
+
+        .bot_grid:active {
+            background: #dde2f8; 
+            box-shadow: 8px 8px 16px #000;
+            opacity: 1;  
+            color: #272185;
+        }
+
+        .bot_grid:hover {
+            background: #dde2f8; 
+            color: #272185;
+        }
+
+        #mid_back {
+            display: grid;
+            grid-area: 2 / 3 / 2 / 3;
+            grid-template-rows: 30% 70%;
+        }
+
+        #who_tail {
+            display: grid;
+            position: relative;
+            background-color: #f3e4a1;
+            width: 18vw;
+            height: 8vh;
+            bottom: -4vh;
+            left: 1vw;
+            grid-area: 1 / 1 / 1 / 1;
+            color: #dbdff8;
+            text-shadow: 1px 1px 2px black,
+                        0 0 30px #5c47bc,
+                        0 0 10px #21227c;
+            font-size: 4vh;
+            text-align: center;
+            border: 2px solid #000;
+            border-bottom-left-radius: 1.5vw;
+            border-bottom-right-radius: 1.5vw;
+        }
+
+        .button_game {
+            display: grid;
+            grid-area: 1 / 1 / 1 / 1;
+            position: relative;
+            width: 7vw;
+            height: 6vh;
+            bottom: -16vh;
+            background: #ecc6dd;
+            border: 4px solid #ffe9cc;
+            font-weight: bolder;
+            border-radius: 10px;
+            font-size: 3.5vh;
+            text-align: center;
+            box-shadow: 2px 2px 5px #000;
+        }
+
+        .button_game:active {
+            border: 5px solid #ffe9cc;
+            background: #daa4c6;
+            box-shadow: 5px 5px 10px #000;
+            color: #272185;
+        }
+
+        .button_game:hover {
+            background: #daa4c6;
+            color: #272185;
+        }
+
+        #dice_begin {
+            left: 2vw;
+        }
+
+        #dice_end {
+            pointer-events: none;
+            left: 11vw;
+        }
+
+        #dice_back{
+            position: relative;
+            grid-area: 2 / 1 / 2 / 1;
+            width: 19vw;
+            height: 19vw;
+            top: 5vh;
+            left: 0.5vw;
+            background: #c3ace8;
+            border: 2px solid black;
+            box-shadow: 0px 0px 4px 2px #3e2f94,
+                        0px 0px 4px 4px #7163c3,
+                        0px 0px 4px 6px #c0b7f9;
+            border-radius: 9.5vw;
+        }
+
+        #scroll{
+            position: relative;
+            grid-area: 2 / 1 / 2 / 1;
+            top: 10.4vh;
+            left: 5.2vw;
+            width: 6vw;
+            height: 6vw;
+            /* 定义3d模式 */
+            transform-style: preserve-3d;
+            /* 初始角度 */
+            transform: rotateX(60deg) rotateY(30deg) rotateZ(30deg);
+            /* 过渡时间 */
+            transition: all 0.3s;
+        }
+
+        li {
+            list-style: none;
+            position: absolute;
+            width: 6vw;
+            height: 6vw;
+            border: 1px solid black;
+            background-size: 100% 100%;
+            border-radius: 22px;
+        }
+        /* 每一面旋转不同角度后偏移 */
+        li:first-child {
+            background-image: url(https://img2022.cnblogs.com/blog/2992253/202210/2992253-20221001154749632-2102453151.png);
+        }
+
+        li:nth-child(2) {
+            background-image: url(https://img2022.cnblogs.com/blog/2992253/202210/2992253-20221001154811254-500894353.png);
+            transform: rotateX(90deg) translateY(-3vw) translateZ(3vw);
+        }
+
+        li:nth-child(3) {
+            background-image: url(https://img2022.cnblogs.com/blog/2992253/202210/2992253-20221001154855411-260154102.png);
+            transform: rotateX(90deg) translateY(-3vw) translateZ(-3vw);
+        }
+
+        li:nth-child(4) {
+            background-image: url(https://img2022.cnblogs.com/blog/2992253/202209/2992253-20220928110024430-622976489.png);
+            transform: rotateY(90deg) translateZ(-3vw) translateX(3vw);
+        }
+
+        li:nth-child(5) {
+            background-image: url(https://img2022.cnblogs.com/blog/2992253/202210/2992253-20221001154956822-354827470.png);
+            transform: rotateY(90deg) translateZ(3vw) translateX(3vw);
+        }
+
+        li:nth-child(6) {
+            background-image: url(https://img2022.cnblogs.com/blog/2992253/202210/2992253-20221001155019978-1645505768.png);
+            transform: translateZ(-6vw) rotateX(180deg);
+        }
+
+        #end_page {
+            visibility: hidden;
+            height: 30vh;
+            width: 30vw;
+            position: absolute;
+            top: 35vh;
+            left: 35vw;
+            z-index: 4;
+            display: grid;
+            grid-template-rows: 40% 30% 30%;
+            background-color: #c3aee0;
+            border: 10px solid #f6e1aaf8;
+            border-radius: 20px;
+            box-shadow: 0px 0px 4px 2px black,
+                        0px 0px 4px 4px #f3d78e,
+                        0px 0px 4px 6px #f9e6b5,
+                        0px 0px 4px 8px #fbf0d2;
+        }
+
+        #who_win {
+            color: #dbdff8;
+            text-shadow: 1px 1px 2px black,
+                        0 0 30px #5c47bc,
+                        0 0 10px #21227c;
+            font-size: 4vw;
+            text-align: center;
+        }
+
+        .button_end {
+            display: grid;
+            width: 15vw;
+            height: 7vh;
+            position: relative;
+            left: 7.5vw;
+            background: #eec7d7;
+            border: 8px solid #ffe9cc;
+            font-weight: bolder;
+            border-radius: 15px;
+            font-size: 3.5vh;
+            text-align: center;
+            box-shadow: 2px 2px 5px #000;
+        }
+
+        .button_end:active {
+            background: #daa4c6;
+            border: 9px solid #ffe9cc;
+            box-shadow: 4px 4px 10px #000;
+            color: #272185;
+        }
+
+        .button_end:hover {
+            background: #daa4c6;
+            color: #272185;
+        }
+
+        #button_again {
+            grid-area: 2 / 1 / 2 / 1;
+        }
+
+        #button_back {
+            grid-area: 3 / 1 / 3 / 1;
+        }
+          
+    </style>
+
+
+    <script>
+        var who=-1;//代表现在是谁的回合
+        var A_coll=0;//A的托管是否开启
+        var B_coll=0;//B的托管是否开启
+        var num_dice=0;//骰子点数
+        var flag = true;//骰子的状态
+        var sta=1;//sta=1代表未投骰子，sta2代表正在投骰子，sta3代表正在下骰子
+        var stas=-1;
+        function sound(){
+            if(stas==-1){
+                document.getElementById('back_sound').innerHTML="背景音乐：开";
+                document.getElementById('bgmusic').play();
+            }
+            else{
+                document.getElementById('back_sound').innerHTML="背景音乐：关";
+                document.getElementById('bgmusic').pause();
+            }
+            stas*=-1;
+        }
+        //A的九宫格无法点击
+        function lock_A() {
+            var A_head="A";
+            for(var i=1;i<=3;++i) {
+                for(var j=1;j<=3;++j) {
+                    var A_id=A_head+String(i)+String(j);
+                    var A_num=document.getElementById(A_id).innerHTML;
+                    document.getElementById(A_id).setAttribute("style","pointer-events: none");
+                }
+            }
+        }
+        //B的九宫格无法点击
+        function lock_B() {
+            var B_head="B"
+            for(var i=1;i<=3;++i) {
+                for(var j=1;j<=3;++j) {
+                    var B_id=B_head+String(i)+String(j);
+                    var B_num=document.getElementById(B_id).innerHTML;
+                    document.getElementById(B_id).setAttribute("style","pointer-events: none");
+                }
+            }
+        }
+        //设置A的托管开关
+        function set_A_coll(id) {
+            if(A_coll==1) {
+                document.getElementById(id).innerHTML="托管";
+                A_coll=0;
+            }
+            else {
+                document.getElementById(id).innerHTML="托管中";
+                A_coll=1;
+                if(who==-1&&sta==1){
+                    AI_play_dice();
+                }
+                else if(who==1&&sta==2){
+                    f2();
+                    setTimeout(A_AI_play,500);
+                }
+                else if(who==1&&sta==3){
+                    A_AI_play();
+                }
+            }
+        }
+        //设置B的托管开关
+        function set_B_coll(id) {
+            if(B_coll==1) {
+                document.getElementById(id).innerHTML="托管";
+                B_coll=0;
+            }
+            else {
+                document.getElementById(id).innerHTML="托管中";
+                B_coll=1;
+                if(who==1&&sta==1){
+                    AI_play_dice();
+                }
+                else if(who==-1&&sta==2){
+                    f2();
+                    setTimeout(B_AI_play,500);
+                }
+                else if(who==-1&&sta==3){
+                    B_AI_play();
+                }
+            }
+        }
+        //设置到谁投骰子并设置对应的无法点击
+        function set_whocan() {
+            document.getElementById("dice_end").setAttribute("style","pointer-events: none");
+            if(who==1) {
+                lock_B();
+                if(A_coll==1) {
+                    lock_A();
+                }
+                else {
+                    var A_head="A";
+                    for(var i=1;i<=3;++i) {
+                        for(var j=1;j<=3;++j) {
+                            var A_id=A_head+String(i)+String(j);
+                            var A_num=document.getElementById(A_id).innerHTML;
+                            if(A_num=="0") {
+                                document.getElementById(A_id).setAttribute("style","pointer-events: ");
+                            }
+                            else {
+                                document.getElementById(A_id).setAttribute("style","pointer-events: none");
+                            }
+                        }
+                    }
+                }
+            }
+            else {
+                lock_A();
+                if(B_coll==1) {
+                    lock_B();
+                }
+                else {
+                    var B_head="B"
+                    for(var i=1;i<=3;++i) {
+                        for(var j=1;j<=3;++j) {
+                            var B_id=B_head+String(i)+String(j);
+                            var B_num=document.getElementById(B_id).innerHTML;
+                            if(B_num=="0") {
+                                document.getElementById(B_id).setAttribute("style","pointer-events: all");
+                            }
+                            else {
+                                document.getElementById(B_id).setAttribute("style","pointer-events: none");
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        //点击骰子开始转动
+        function f1() {
+            lock_A();
+            lock_B();
+            who*=-1;
+            document.getElementById('who_tail').innerHTML="转得骚才逍遥";
+            document.getElementById("dice_begin").setAttribute("style","pointer-events: none");
+            if(who==1){
+                if(A_coll==1) document.getElementById("dice_end").setAttribute("style","pointer-events: none");
+                else document.getElementById("dice_end").setAttribute("style","pointer-events: all");
+            }
+            else{
+                if(B_coll==1) document.getElementById("dice_end").setAttribute("style","pointer-events: none");
+                else document.getElementById("dice_end").setAttribute("style","pointer-events: all");
+            }
+            if(flag) {
+                // 周期调用
+                n = setInterval(() => {
+                    var i = Math.floor(Math.random() * 1000);   //生成随机数定义转换角度
+                    var j = Math.floor(Math.random() * 1000);
+                    var k = Math.floor(Math.random() * 1000);
+                    document.getElementById('scroll').style.transform = 'rotateX(60deg) rotateY(' + j + 'deg) rotateZ(' + k + 'deg)';
+                }, 100);
+                // 清除标志位，避免重复触发onclick
+                flag = false;
+            } 
+            sta=2;
+        }
+        //点击骰子结束转动
+        function f2() {
+            // 随机数定义结果
+            var m = Math.floor(Math.random() * 6) + 1;
+            num_dice=m;
+            // 清除周期函数
+            clearInterval(n);
+            // 打开标志位
+            flag = true;
+            // 根据随机数，计算角度后，让骰子旋转角度
+            switch (m) {
+                case 1:
+                    document.getElementById('scroll').style.transform = 'rotateX(360deg) ';
+                    break;
+                case 2:
+                    document.getElementById('scroll').style.transform = 'rotateX(270deg) ';
+                    break;
+                case 3:
+                    document.getElementById('scroll').style.transform = 'rotateX(90deg) ';
+                    break;
+                case 4:
+                    document.getElementById('scroll').style.transform = 'rotateY(90deg) ';
+                    break;
+                case 5:
+                    document.getElementById('scroll').style.transform = 'rotateY(270deg) ';
+                    break;
+                case 6:
+                    document.getElementById('scroll').style.transform = 'rotateX(180deg) ';
+                    break;
+            }
+            if (who==1) {
+                document.getElementById('who_tail').innerHTML="A放置骰子";
+            }
+            else {
+                document.getElementById('who_tail').innerHTML="B放置骰子";
+            }
+            sta=3
+            set_whocan();
+        }
+        //计算AB得分并判断游戏是否结束
+        function get_scro() {
+            var A_head="A";
+            var B_head="B";
+            var A_num=0;
+            var B_num=0;
+            var A_end=1;
+            var B_end=1;
+            for (var i=1;i<=3;++i) {
+                var x_id=A_head+String(i)+"1";
+                var y_id=A_head+String(i)+"2";
+                var z_id=A_head+String(i)+"3";
+                var x=parseInt(document.getElementById(x_id).innerHTML);
+                var y=parseInt(document.getElementById(y_id).innerHTML);
+                var z=parseInt(document.getElementById(z_id).innerHTML);
+                if(x==y&&y==z){
+                    A_num+=x*3*3;
+                }
+                else{
+                    if(x==y){
+                        A_num+=x*2*2+z;
+                    }
+                    else if(y==z){
+                        A_num+=y*2*2+x;
+                    }
+                    else if(x==z){
+                        A_num+=x*2*2+y;
+                    }
+                    else{
+                        A_num+=x+y+z;
+                    }
+                }
+                if(x==0||y==0||z==0) {
+                    A_end=0;
+                }
+            }
+            for (var i=1;i<=3;++i) {
+                var x_id=B_head+String(i)+"1";
+                var y_id=B_head+String(i)+"2";
+                var z_id=B_head+String(i)+"3";
+                var x=parseInt(document.getElementById(x_id).innerHTML);
+                var y=parseInt(document.getElementById(y_id).innerHTML);
+                var z=parseInt(document.getElementById(z_id).innerHTML);
+                if(x==y&&y==z){
+                    B_num+=x*3*3;
+                }
+                else{
+                    if(x==y){
+                        B_num+=x*2*2+z;
+                    }
+                    else if(y==z){
+                        B_num+=y*2*2+x;
+                    }
+                    else if(x==z){
+                        B_num+=x*2*2+y;
+                    }
+                    else{
+                        B_num+=x+y+z;
+                    }
+                }
+                if(x==0||y==0||z==0) {
+                    B_end=0;
+                }
+            }
+            document.getElementById("A_num").innerHTML=A_num;
+            document.getElementById("B_num").innerHTML=B_num;
+            if(A_end||B_end) {
+                end_game();
+                return 0;
+            }
+            else {
+                return 1;
+            }
+        }
+        //将id的格子置0
+        function reset_0(id) {
+            document.getElementById(id).innerHTML=0;
+        }
+        //将id的格子赋予骰子点数，更新九宫格，设置相应的可点击
+        function get_num(id) {
+            //获得该格子的标签
+            document.getElementById(id).innerHTML=num_dice;
+            lock_A();//锁死A的九宫格
+            lock_B();//锁死B的九宫格
+            //消去对方可消去九宫格的数字
+            if (id[0]=='A') {
+                var B_head='B'+id[1];
+                for(var i=1;i<=3;++i) {
+                    var B_id=B_head+String(i);
+                    var div=document.getElementById(B_id);
+                    if (div.innerHTML==num_dice) {
+                        reset_0(B_id);
+                    }
+                }
+            }
+            else {
+                var A_head='A'+id[1];
+                for(var i=1;i<=3;++i) {
+                    var A_id=A_head+String(i);
+                    var div=document.getElementById(A_id);
+                    if (div.innerHTML==num_dice) {
+                        reset_0(A_id);
+                    }
+                }
+            }
+            //计算A与B的得分后，判断游戏未结束
+            if(get_scro()==1){
+                sta=1;
+                //B的回合结束，开始A的回合
+                if (who==-1) {
+                    document.getElementById('who_tail').innerHTML="A开始投骰子";
+                    //A的托管是否启动
+                    if(A_coll==1){
+                        AI_play_dice();//托管
+                    }
+                    else{
+                        document.getElementById("dice_begin").setAttribute("style","pointer-events: ");
+                    }
+                }
+                //A的回合结束，开始B的回合
+                else {
+                    document.getElementById('who_tail').innerHTML="B开始投骰子";
+                    //B的托管是否启动
+                    if(B_coll==1){
+                        AI_play_dice();//托管
+                    }
+                    else{
+                        document.getElementById("dice_begin").setAttribute("style","pointer-events: ");
+                    }
+                }
+            }
+        }
+        //结束游戏时产生新的界面
+        function end_game() {
+            A=parseInt(document.getElementById("A_num").innerHTML);
+            B=parseInt(document.getElementById("B_num").innerHTML);
+            if(A>B){
+                document.getElementById("who_win").innerHTML="A玩家获胜！";
+            }
+            else if(A<B){
+                document.getElementById("who_win").innerHTML="B玩家获胜！";
+            }
+            else{
+                document.getElementById("who_win").innerHTML="竟然平局！！";
+            }
+            document.getElementById("end_page").style.visibility="visible";
+        }
+        //设置结束界面返回游戏主页面函数
+        function button_back() {
+            window.open("");
+        }
+        //AI开始投骰子并停止骰子，并调用AI放置骰子
+        function AI_play_dice() {
+            setTimeout(f1,500);
+            lock_A();
+            lock_B();
+            setTimeout(f2,1000*Math.random()+1000);
+            if(who==-1) setTimeout(A_AI_play,2500);
+            else setTimeout(B_AI_play,2500);
+        }
+        //AI模拟安置骰子，使对应九宫格归零
+        function dice_clear(dice,i,mat){
+            for(var j=1;j<=3;++j){
+                if(mat[i][j]==dice){
+                    mat[i][j]=0;
+                }
+            }
+        }
+        //AI模拟安置骰子，并计算AB玩家得分
+        function cal_score(mat){
+            var score=0;
+            for(var i=1;i<=3;++i){
+                x=mat[i][1];
+                y=mat[i][2];
+                z=mat[i][3];
+                if(x==y&&y==z){
+                    score+=x*3*3;
+                }
+                else{
+                    if(x==y){
+                        score+=x*2*2+z;
+                    }
+                    else if(y==z){
+                        score+=y*2*2+x;
+                    }
+                    else if(x==z){
+                        score+=x*2*2+y;
+                    }
+                    else{
+                        score+=x+y+z;
+                    }
+                }
+            }
+            return score;
+        }
+        //AI模拟安置骰子，并计算bb对aa的风险率
+        function cal_risk(aa,bb){
+            //aa是自己的九宫格，bb是对方的九宫格
+            //初始化风险率为0
+            var risk=0;
+            //每一行存在一个风险率，遍历每一行
+            for(var i=1;i<=3;++i){
+                //我方该行有几个0（可以消去对方的数字）
+                var row_zero=0;
+                for(var j=1;j<=3;++j){
+                    //我方这个格子有0
+                    if(aa[i][j]==0){
+                        row_zero+=1;
+                    }
+                }
+                //dice[i]是对方点数为i出现的次数
+                var dice=new Array(0,0,0,0,0,0,0);
+                //对方每行最多有3个不同的分数
+                var num=new Array(0,0,0);
+                //对方每行有几个不同的分数
+                var num_index=0;
+                //用对方骰子点数更新dice数组
+                for(var j=1;j<=3;++j){
+                    dice[bb[i][j]]+=1;
+                }
+                //用dice数组更新num数组和num_index
+                for(var j=1;j<=6;++j){
+                    if(dice[j]){
+                        //第num_index分数=分数*该分数^2
+                        num[num_index]=j*dice[j]*dice[j];
+                        num_index+=1;
+                    }
+                }
+                //num数组排倒叙
+                num.sort();
+                num.reverse();
+                //row_zero是我方可以消除对方的次数，num是对方可被消去的分数
+                for(var j=0;j<row_zero;++j){
+                    //风险率加上可消去的分数
+                    risk+=num[j];
+                }
+            }
+            return risk;
+        }
+        //AI模拟安置骰子，并计算mat的成长率
+        function cal_grow(mat){
+            var grow=0;
+            for(var i=1;i<=3;++i){
+                var row_zero=0;
+                var dice=new Array(0,0,0,0,0,0,0);
+                for(var j=1;j<=3;++j){
+                    if(mat[i][j]==0){
+                        row_zero+=1;
+                    }
+                    else{
+                        dice[parseInt(mat[i][j])]+=1;
+                    }
+                }
+                if(row_zero==2){
+                    max_dice=0;
+                    for(var j=1;j<=6;++j){
+                        if(dice[j]!=0){
+                            max_dice=j;
+                        }
+                    }
+                    grow+=max_dice*2.5*2.5;
+                }
+                else if(row_zero==1){
+                    max_dice=0;
+                    for(var j=1;j<=6;++j){
+                        if(dice[j]!=0){
+                            max_dice=j;
+                        }
+                    }
+                    grow+=max_dice*2*2;
+                }
+            }
+            return grow;
+        }
+        //AI进行模拟安置骰子在i行，j列上
+        function AI_set_dice(i,j,dice,mat1,mat2){
+            var aa=new Array([0,0,0,0],[0,0,0,0],[0,0,0,0],[0,0,0,0]);
+            var bb=new Array([0,0,0,0],[0,0,0,0],[0,0,0,0],[0,0,0,0]);
+            for(var x=1;x<=3;++x){
+                for(var y=1;y<=3;++y){
+                    aa[x][y]=mat2[x][y];
+                    bb[x][y]=mat1[x][y];
+                }
+            }
+            bb[i][j]=dice;
+            dice_clear(dice,i,aa);
+            var a_score=cal_score(aa);
+            var b_score=cal_score(bb);
+            var b_risk=cal_risk(aa,bb);
+            var a_risk=cal_risk(bb,aa);
+            var b_grow=cal_grow(bb);
+            var a_grow=cal_grow(aa);
+            var b_a_score=b_score-a_score;
+            return b_a_score-0.08*(1+0.8*b_a_score/b_score)*b_risk+0.08*(1-0.8*b_a_score/b_score)*a_risk+0.08*b_grow-0.08*a_grow;
+        }
+        //AI—A安置骰子
+        function A_AI_play() {
+            if(A_coll==0) {
+                set_whocan();
+                return ;
+            }
+            var a=new Array([0,0,0,0],[0,0,0,0],[0,0,0,0],[0,0,0,0]);
+            var b=new Array([0,0,0,0],[0,0,0,0],[0,0,0,0],[0,0,0,0]);
+            for(var i=1;i<=3;++i){
+                for(var j=1;j<=3;++j){
+                    a[i][j]=parseInt(document.getElementById("A"+String(i)+String(j)).innerHTML);
+                    b[i][j]=parseInt(document.getElementById("B"+String(i)+String(j)).innerHTML);
+                }
+            }
+            var x_i=0;
+            var x_j=0; 
+            var x_sco=-9999;
+            var y_i=0;
+            var y_j=0;
+            var y_sco=-9999;
+            var z_i=0;
+            var z_j=0;
+            var z_sco=-9999;
+            for(var i=1;i<=3;++i){
+                for(var j=1;j<=3;++j){
+                    if(a[i][j]==0){
+                        if(i==1){
+                            x_i=i;
+                            x_j=j;
+                            x_sco=AI_set_dice(i,j,num_dice,a,b);
+                        }
+                        else if(i==2){
+                            y_i=i;
+                            y_j=j;
+                            y_sco=AI_set_dice(i,j,num_dice,a,b);
+                        }
+                        else{
+                            z_i=i;
+                            z_j=j;
+                            z_sco=AI_set_dice(i,j,num_dice,a,b);
+                        }
+                        break;
+                    }
+                }
+            }
+            if(x_sco>=y_sco&&x_sco>=z_sco){
+                var div=document.getElementById("A"+String(x_i)+String(x_j));
+                var model=div.style.cssText
+                div.style.cssText="background: #dde2f8; box-shadow: 8px 8px 16px #000;opacity: 1;  color: #272185;";
+                setTimeout(function(){div.click()},300);
+            }
+            else if(y_sco>=x_sco&&y_sco>=z_sco){
+                var div=document.getElementById("A"+String(y_i)+String(y_j));
+                var model=div.style.cssText
+                div.style.cssText="background: #dde2f8; box-shadow: 8px 8px 16px #000;opacity: 1;  color: #272185;";
+                setTimeout(function(){div.click()},300);
+            }
+            else{
+                var div=document.getElementById("A"+String(z_i)+String(z_j));
+                var model=div.style.cssText
+                div.style.cssText="background: #dde2f8; box-shadow: 8px 8px 16px #000;opacity: 1;  color: #272185;";
+                setTimeout(function(){div.click()},300);
+            }
+        }
+        //AI-B安置骰子
+        function B_AI_play() {
+            if(B_coll==0) {
+                set_whocan();
+                return ;
+            }
+            var a=new Array([0,0,0,0],[0,0,0,0],[0,0,0,0],[0,0,0,0]);
+            var b=new Array([0,0,0,0],[0,0,0,0],[0,0,0,0],[0,0,0,0]);
+            for(var i=1;i<=3;++i){
+                for(var j=1;j<=3;++j){
+                    a[i][j]=parseInt(document.getElementById("A"+String(i)+String(j)).innerHTML);
+                    b[i][j]=parseInt(document.getElementById("B"+String(i)+String(j)).innerHTML);
+                }
+            }
+            var x_i=0;
+            var x_j=0; 
+            var x_sco=-9999;
+            var y_i=0;
+            var y_j=0;
+            var y_sco=-9999;
+            var z_i=0;
+            var z_j=0;
+            var z_sco=-9999;
+            for(var i=1;i<=3;++i){
+                for(var j=1;j<=3;++j){
+                    if(b[i][j]==0){
+                        if(i==1){
+                            x_i=i;
+                            x_j=j;
+                            x_sco=AI_set_dice(i,j,num_dice,b,a);
+                        }
+                        else if(i==2){
+                            y_i=i;
+                            y_j=j;
+                            y_sco=AI_set_dice(i,j,num_dice,b,a);
+                        }
+                        else{
+                            z_i=i;
+                            z_j=j;
+                            z_sco=AI_set_dice(i,j,num_dice,b,a);
+                        }
+                        break;
+                    }
+                }
+            }
+            if(x_sco>=y_sco&&x_sco>=z_sco){
+                var div=document.getElementById("B"+String(x_i)+String(x_j));
+                var model=div.style.cssText
+                div.style.cssText="background: #dde2f8; box-shadow: 8px 8px 16px #000;opacity: 1;  color: #272185;";
+                setTimeout(function(){div.click()},300);
+            }
+            else if(y_sco>=x_sco&&y_sco>=z_sco){
+                var div=document.getElementById("B"+String(y_i)+String(y_j));
+                var model=div.style.cssText
+                div.style.cssText="background: #dde2f8; box-shadow: 8px 8px 16px #000;opacity: 1;  color: #272185;";
+                setTimeout(function(){div.click()},300);
+            }
+            else{
+                var div=document.getElementById("B"+String(z_i)+String(z_j));
+                var model=div.style.cssText
+                div.style.cssText="background: #dde2f8; box-shadow: 8px 8px 16px #000;opacity: 1;  color: #272185;";
+                setTimeout(function(){div.click()},300);
+            }
+        }
+    </script>
+</head>
+<body>
+    <div id="backgroud">
+        <div id="name"></div>
+        <div id="left"></div>
+        <div id="right"></div>
+        <div id="back_sound" onclick="sound()">背景音乐：关</div>
+        <audio id="bgmusic" loop="loop" >
+            <source src="https://ppt-mp3cdn.hrxz.com/d/file/filemp3/hrxz.com-yvftarus5zz20616.mp3" type="audio/mpeg">
+        </audio>
+        <div id="back_A">
+            <div id="A_scr">A玩家的得分:</div>
+            <div id="A_num">0</div>
+            <div id="A_coll" onclick="set_A_coll(this.id)">托管</div>
+            <div id="A_grid">
+                <div class="top_grid" id="A11" onclick="get_num(this.id)">0</div>
+                <div class="top_grid" id="A12" onclick="get_num(this.id)">0</div>
+                <div class="top_grid" id="A13" onclick="get_num(this.id)">0</div>
+                <div class="mid_grid" id="A21" onclick="get_num(this.id)">0</div>
+                <div class="mid_grid" id="A22" onclick="get_num(this.id)">0</div>
+                <div class="mid_grid" id="A23" onclick="get_num(this.id)">0</div>
+                <div class="bot_grid" id="A31" onclick="get_num(this.id)">0</div>
+                <div class="bot_grid" id="A32" onclick="get_num(this.id)">0</div>
+                <div class="bot_grid" id="A33" onclick="get_num(this.id)">0</div>
+            </div>
+        </div>
+
+        <div id="back_B">
+            <div id="B_scr">B玩家的得分:</div>
+            <div id="B_num">0</div>
+            <div id="B_coll" onclick="set_B_coll(this.id)">托管</div>
+            <div id="B_grid">
+                <div class="top_grid" id="B11" onclick="get_num(this.id)">0</div>
+                <div class="top_grid" id="B12" onclick="get_num(this.id)">0</div>
+                <div class="top_grid" id="B13" onclick="get_num(this.id)">0</div>
+                <div class="mid_grid" id="B21" onclick="get_num(this.id)">0</div>
+                <div class="mid_grid" id="B22" onclick="get_num(this.id)">0</div>
+                <div class="mid_grid" id="B23" onclick="get_num(this.id)">0</div>
+                <div class="bot_grid" id="B31" onclick="get_num(this.id)">0</div>
+                <div class="bot_grid" id="B32" onclick="get_num(this.id)">0</div>
+                <div class="bot_grid" id="B33" onclick="get_num(this.id)">0</div>
+            </div>
+        </div>
+
+        <div id="mid_back">
+            <div id="who_tail">A开始投骰子</div>
+            <button class="button_game" id="dice_begin" onclick="f1()">投！</button>
+            <button class="button_game" id="dice_end" onclick="f2()">停！</button>
+
+            <!-- 绘制骰子 -->
+            <div id="dice_back">
+                <ul id="scroll">
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                </ul>
+            </div>
+        </div>
+
+        <div id="end_page">
+            <div id="who_win">ghhhh</div>
+            <button id="game_again" class="button_end" onclick="javascript:location.reload();">
+                再来一局
+            </button>
+            <button id="game_back" class="button_end" onclick="button_back()">
+                返回首页
+            </button>
+        </div>
+    </div>
+</body>
+</html>
